@@ -1,5 +1,11 @@
 let humanScore = 0, computerScore = 0;
 
+const this_round = document.querySelector('.this_round');
+const computer = document.querySelector('.computer');
+const person = document.querySelector('.person');
+const final = document.querySelector('.final');
+
+
 function playround(humanSelection) {
 
     function getComputerChoice() {
@@ -11,36 +17,55 @@ function playround(humanSelection) {
     }
 
     function playRound(humanChoice, computerChoice) {
-        console.log("New Round !!!")
-        console.log("----------");
+        console.log("----------New Round !!!----------");
 
         if (humanChoice == "rock" && computerChoice == "scissors") {
             humanScore++;
             console.log("You win this round!");
+            this_round.textContent = "You win this round!";
+            person.textContent = "You - " + humanScore;
             console.log(`${humanChoice} beats ${computerChoice}`);
         }
 
         else if (humanChoice == "paper" && computerChoice == "rock") {
             humanScore++;
             console.log("You win this round!");
+            this_round.textContent = "You win this round!";
+            person.textContent = "You - " + humanScore;
             console.log(`${humanChoice} beats ${computerChoice}`);
         }
 
         else if (humanChoice == "scissors" && computerChoice == "paper") {
             humanScore++;
             console.log("You win this round!");
+            this_round.textContent = "You win this round!";
+            person.textContent = "You - " + humanScore;
             console.log(`${humanChoice} beats ${computerChoice}`);
         }
 
         else if (humanChoice == computerChoice) {
             console.log("Nobody wins the round!!");
+            this_round.textContent = "Nobody Wins this round!";
         }
 
         else {
             computerScore++;
             console.log("Computer wins this round!");
+            this_round.textContent = "Computer wins this round!";
+            computer.textContent = "Computer - " + computerScore;
             console.log(`${computerChoice} beats ${humanChoice}`)
 
+        }
+
+        if(humanScore>=5 && computerScore>=5){
+            final.textContent = "Restart the game- Game is over!!!"
+        }
+
+        else if (humanScore>=5){
+            final.textContent = "You win the game!! - Restart the game to start again!!"
+        }
+        else if (computerScore>=5){
+            final.textContent = "Computer Wins the game!! - Restart the game to start again!!"
         }
     }
 
@@ -68,6 +93,3 @@ scissors.addEventListener('click', () => {
     playround(humanSelection);
 });
 
-if (humanScore > computerScore) console.log("You Win This Game!!!");
-else if (humanScore == computerScore) console.log("Nobody Wins This Game!!!");
-else console.log("Computer wins this Game!!!!")
